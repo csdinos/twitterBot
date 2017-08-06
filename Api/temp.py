@@ -2,8 +2,8 @@
 import sys
 sys.path.insert(0, '/home/dinos/twitterBot/')
 from secrets import *
+from ListRetriever import *
 
-from Auth import TokenGenerator
+listRetriever = ListRetriever(C_KEY, C_SECRET);
 
-tokenGenerator = TokenGenerator(C_KEY, C_SECRET)
-print tokenGenerator.generate()
+print listRetriever.getLists()

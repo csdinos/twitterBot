@@ -20,6 +20,8 @@ class TokenGenerator:
         jsonResponse = requests.post(self.URL, requestData, headers=headers)
         token = json.loads(jsonResponse.text)['access_token']
 
+        #TODO maybe somehow use static functionality so as not to generate it
+        # over and over again but just once and then return the same.
         return token
 
     def getAuthorizationToken(self):
