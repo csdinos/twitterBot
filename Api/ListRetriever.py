@@ -1,6 +1,5 @@
 from Auth import TokenGenerator
 import requests
-import base64
 import json
 
 class ListRetriever:
@@ -20,10 +19,17 @@ class ListRetriever:
         requestData = {'user_id': self.USER_ID}
 
         jsonResponse = requests.get(self.URL, params=requestData, headers=headers)
-        response = json.loads(jsonResponse.text)
+        lists = json.loads(jsonResponse.text)
 
-        #TODO check what we need from the response. Prolly just ID
-        return response
+        return lists
+
+    def getListByName(self, name):
+        lists = self.getLists()
+        for listElem in lists:
+            if name == listElem['name']:
+                return listElem
+
+        return False
 
     def getToken(self):
         tokenGenerator = TokenGenerator(self.key, self.secret)
